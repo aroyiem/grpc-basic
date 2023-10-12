@@ -3,6 +3,7 @@ package com.roy.server;
 import com.roy.model.Balance;
 import com.roy.model.BalanceCheckRequest;
 import com.roy.model.BankServiceGrpc;
+import com.roy.model.DepositRequest;
 import com.roy.model.Money;
 import com.roy.model.WithdrawRequest;
 import io.grpc.Status;
@@ -40,5 +41,10 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
             AccountDatabase.deductBalance(accountNumber, 10);
         }
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public StreamObserver<DepositRequest> cashDeposit(StreamObserver<Balance> responseObserver) {
+        return new CashStreamingRequest(responseObserver);
     }
 }
