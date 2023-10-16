@@ -75,8 +75,10 @@ public class MetadataClientTest {
     @Test
     void withdrawAsyncTest() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        WithdrawRequest withdrawRequest = WithdrawRequest.newBuilder().setAccountNumber(10).setAmount(50).build();
-        this.bankServiceStub.withdraw(withdrawRequest, new MoneyStreamingResponse(latch));
+        WithdrawRequest withdrawRequest = WithdrawRequest.newBuilder().setAccountNumber(10).setAmount(900).build();
+        this.bankServiceStub
+                .withCallCredentials(new UserSessionToken("user-secret-3:prime"))
+                .withdraw(withdrawRequest, new MoneyStreamingResponse(latch));
         latch.await();
     }
 }
