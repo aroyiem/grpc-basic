@@ -1,7 +1,5 @@
-package com.roy.server;
+package com.roy.server.rpctypes;
 
-import com.roy.server.rpctypes.BankService;
-import com.roy.server.rpctypes.TransferService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 

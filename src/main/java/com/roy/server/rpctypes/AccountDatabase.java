@@ -1,4 +1,4 @@
-package com.roy.server;
+package com.roy.server.rpctypes;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -9,16 +9,16 @@ public class AccountDatabase {
 
     /*
         This is a DB
-        1 => 10
-        2 => 20
+        1 => 100
+        2 => 200
         ...
-        10 => 100
+        10 => 1000
      */
 
     private static final Map<Integer, Integer> MAP =
             IntStream.rangeClosed(1, 10)
                     .boxed()
-                    .collect(Collectors.toMap(Function.identity(), value -> value * 10));
+                    .collect(Collectors.toMap(Function.identity(), value -> value * 100));
 
     public static int getBalance(int accountId) {
         return MAP.get(accountId);
@@ -30,5 +30,9 @@ public class AccountDatabase {
 
     public static Integer deductBalance(int accountId, int amount) {
         return MAP.computeIfPresent(accountId, (key, value) -> value - amount);
+    }
+
+    public static void printAccountDetails() {
+        System.out.println(MAP);
     }
 }

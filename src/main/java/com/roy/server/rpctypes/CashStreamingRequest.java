@@ -1,4 +1,4 @@
-package com.roy.server;
+package com.roy.server.rpctypes;
 
 import com.roy.model.Balance;
 import com.roy.model.DepositRequest;
